@@ -1,7 +1,7 @@
 <!--
 * File Name  : registration-form
 * Description : html code to design a registration form and a table to show the data 
-* Created date : 14/01/2019
+* Created date : 15/01/2019
 * Author  : Md Wasif Ali
 * Comments : hole page is divided into to division: 1 for the registration for, another one for the table
 -->
@@ -10,25 +10,27 @@
 	<head>
 		<meta content="text/html"; charset="utf-8">
 		<title>Registration</title>
-		<link rel="stylesheet" type="text/css" href="registration-style.css">
+		<link rel="stylesheet" type="text/css" href="registrationStyle.css">
 	</head>	
 	<body>
 		<!-- division for display the data -->
-		<div class="table" id="dataTable" style="display: none;">
+		<div class="table" id="dataTable" style="font-size:18px;text-align:center; width=100%;">
 			<div id="display">
 				<table id="registrationTable">
-					<tr id="tableHeader">
-						<th>Name</th><th>Email</th><th>Password</th><th>Address</th><th>DOB</th><th>Gender</th>
-						<th>Catagory</th><th>Subject</th>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Password</th>
+						<th>Address</th>
+						<th>DOB</th>
+						<th>Gender</th>
+						<th>Catagory</th>
+						<th>Subject</th>
+						<th>Options</th>
 					</tr>
-					
+					<tbody id="tableData">
+					</tbody>
 				</table>
-			</div>
-			<div style="display:none;" id="actionButton">
-				<center>
-					<button type="button"  name="edit" class="btn" onclick="editHtmlTableSelectedRow();" id="btn">Update</button>
-					<button type="button"  name="remove" class="btn" id="btn" onclick="ConfirmDelete();">Remove</button>
-				</center>
 			</div>
 		</div>
 		<!-- division for the registration form -->
@@ -40,18 +42,18 @@
 			
 			<div class="body" id="bodyPosition">
 				<div class="input">
-					<label class="error"id="wrongInput"> </label>
+					<label class="error" id="wrongInput"> </label>
 					<label>Name<span id="mandatory">*</span></label>
 					<div class="box">
-						<input id="name" class="form-control" type="text" name="name" onblur="validateName()" required>
-					</div>
-					<label class="error"id="wrongName"> </label>
+						<input id="name" class="form-control" type="text" name="name" required>
+					</div>					
+					<span class="error"id="wrongName"> </span>
 				</div>
 			
 				<div class="input">
 					<label>Email<span id="mandatory">*</span></label>
 					<div class="box">
-						<input id="email" class="form-control" type="email" name="email" onblur="validateEmail(this)" required>
+						<input id="email" class="form-control" type="email" name="email" required>
 					</div>
 					<label class="error"id="wrongEmail"> </label>
 				</div>
@@ -59,7 +61,7 @@
 				<div class="input">
 					<label>Password<span id="mandatory">*</span></label>
 					<div class="box">
-						<input id="psw" class="form-control" type="password" name="psw" onblur="validatePassword(this)" required>
+						<input id="psw" class="form-control" type="password" name="psw" required>
 					</div>
 					<label class="error"id="wrongPassword"> </label>
 				</div>
@@ -102,20 +104,21 @@
 				<div class="input">
 					<label>Subject</label>
 					<div class="box">
-						<input type="checkbox" name="sub" value="PHP" id="PHP">PHP<br>
-						<input type="checkbox" name="sub" value="JAVA" id="JAVA">JAVA<br>
-						<input type="checkbox" name="sub" value="HTML" id="HTML">HTML<br>
-						<input type="checkbox" name="sub" value="CSS" id="CSS">CSS
+						<input type="checkbox" name="sub[]" value="PHP" id="PHP">PHP<br>
+						<input type="checkbox" name="sub[]" value="JAVA" id="JAVA">JAVA<br>
+						<input type="checkbox" name="sub[]" value="HTML" id="HTML">HTML<br>
+						<input type="checkbox" name="sub[]" value="CSS" id="CSS">CSS
 					</div>
 				</div>		
 				
 				<div class="input" id="registerButton">
 					<center>
-						<button type="button" onclick="addHtmlTableRow();" name="reg" class="btn" id="btn">Register</button>
+						<button type="button"  name="reg" class="btn" id="registerBtn">Register</button>
 					</center>
 				</div>
 			</div>
 		</div>
-		<script src="registration-script.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="registrationScript.js"></script>
 	</body>
 </html>
