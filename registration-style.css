@@ -5,19 +5,18 @@
 * Author  : Md Wasif Ali
 * Comments : 
 */
-
 body{
 	font-size:120%;
 	background-color:#CCCCCC;
 
 }
 /* a class to design the header of the form */
-.header{
+.header {
 	margin: 20px 0px 0px 20px;
-	//margin: auto;
+	
 	width:26%;
-	color:#FFFFFF;
-	background-color:#663366;
+	color: #FFFFFF;
+	background-color: #663366;
 	text-align:center;
 	border-radius: 10px 10px 0px 0px;
 	padding:20px;
@@ -25,7 +24,6 @@ body{
 /* a class to dsign for the rest of the form*/
 .body{
 	margin: 0px 0px 0px 20px;
-	//margin: auto;
 	width:26%;
 	padding:20px;
 	border-radius:0px 0px 10px 10px;
