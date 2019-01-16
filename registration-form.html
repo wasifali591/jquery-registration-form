@@ -15,35 +15,16 @@
 </head>
 
 <body>
-	<!-- division for display the data -->
-	<div class="table" id="dataTable" style="font-size:18px;text-align:center; width=100%;">
-		<div id="display">
-			<table id="registrationTable">
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Password</th>
-					<th>Address</th>
-					<th>DOB</th>
-					<th>Gender</th>
-					<th>Catagory</th>
-					<th>Subject</th>
-					<th>Options</th>
-				</tr>
-				<tbody id="tableData">
-				</tbody>
-			</table>
-		</div>
-	</div>
 	<!-- division for the registration form -->
 	<div class="form">
-
+		<!--registration form header-->
 		<div class="header" id="headerPosition">
 			<h2>Registration</h2>
 		</div>
-
+		<!--registartion form body-->
 		<div class="body" id="bodyPosition">
 			<div class="input">
+				<!--label for message-->
 				<label class="error" id="wrongInput"> </label>
 				<label>Name<span id="mandatory">*</span></label>
 				<div class="box">
@@ -118,6 +99,26 @@
 					<button type="button" name="reg" class="btn" id="registerBtn">Register</button>
 				</center>
 			</div>
+		</div>
+	</div>
+	<!-- division for display the data -->
+	<div class="table" id="dataTable" style="font-size:18px;text-align:center; width=100%;">
+		<div id="display">
+			<table id="registrationTable">
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Password</th>
+					<th>Address</th>
+					<th>DOB</th>
+					<th>Gender</th>
+					<th>Catagory</th>
+					<th>Subject</th>
+					<th>Options</th>
+				</tr>
+				<tbody id="tableData">
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
