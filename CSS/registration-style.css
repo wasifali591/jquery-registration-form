@@ -1,7 +1,7 @@
 /**
 * File Name  : registration-style
 * Description : css to design the registration-form
-* Created date : 15/01/2019
+* Created date : 17/01/2019
 * Author  : Md Wasif Ali
 * Comments : 
 */
@@ -11,7 +11,7 @@ body{
 
 }
 /* a class to design the header of the form */
-.header {
+.registrationFormHeader {
 	margin: auto;	
 	width:26%;
 	color: #FFFFFF;
@@ -21,22 +21,18 @@ body{
 	padding:20px;
 }
 /* a class to dsign for the rest of the form*/
-.body{
+.registrationFormBody{
 	margin: auto;
 	width:26%;
 	padding:20px;
 	border-radius:0px 0px 10px 10px;
 	background-color:#FFFFFF;
 }
-.table {
-	width: 100%;
-}
-
 .input label{
 	display:block;
 	text-align:left;
 }
-.form-control {
+.formControl {
 	border-radius:5px;
 	border: none;
 	width:93%;
@@ -52,7 +48,7 @@ body{
 	border: 1px solid gray;
 }
 /*a class to design the button */
-.btn{
+.buttonDesign{
 	padding:10px;
 	font-size:16px;
 	color:#FFFFFF;
@@ -60,7 +56,16 @@ body{
 	border:none;
 	border-radius:5px;
 }
-/* to add scroll bar in text area*/
+.requiredField{
+	color: red;
+}
+
+.error {
+	font-size: 15px;
+	color: red;
+}
+
+/* to address scroll bar in text area*/
 textarea{
     overflow-y:scroll;
 }
@@ -71,7 +76,7 @@ table {
 
 td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 th {
@@ -83,14 +88,4 @@ tr:hover {
 	background-color:#f5f5f5;
 	cursor:pointer;
 }
-#btn{
-	    margin: 5px;
-}
-#mandatory{
-	color: red;
-}
 
-.error {
-	font-size: 15px;
-	color: red;
-}

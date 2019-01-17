@@ -1,7 +1,7 @@
 <!--
 * File Name  : registration-form
 * Description : html code to design a registration form and a table to show the data 
-* Created date : 15/01/2019
+* Created date : 17/01/2019
 * Author  : Md Wasif Ali
 * Comments : hole page is divided into to division: 1 for the registration for, another one for the table
 -->
@@ -11,55 +11,82 @@
 <head>
 	<meta content="text/html" ; charset="utf-8">
 	<title>Registration</title>
-	<link rel="stylesheet" type="text/css" href="registration-style.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/registration-style.css">
 </head>
 
 <body>
 	<!-- division for the registration form -->
 	<div class="form">
 		<!--registration form header-->
-		<div class="header" id="headerPosition">
+		<div class="registrationFormHeader">
 			<h2>Registration</h2>
 		</div>
 		<!--registartion form body-->
-		<div class="body" id="bodyPosition">
+		<div class="registrationFormBody">
 			<div class="input">
 				<!--label for message-->
 				<label class="error" id="wrongInput"> </label>
-				<label>Name<span id="mandatory">*</span></label>
+				<label>Name<span class="requiredField">*</span></label>
 				<div class="box">
-					<input id="name" class="form-control" type="text" name="name" required>
+					<input id="name" class="formControl" type="text" name="name" required>
 				</div>
 				<span class="error" id="wrongName"> </span>
 			</div>
 
 			<div class="input">
-				<label>Email<span id="mandatory">*</span></label>
+				<label>Email<span class="requiredField">*</span></label>
 				<div class="box">
-					<input id="email" class="form-control" type="email" name="email" required>
+					<input id="email" class="formControl" type="email" name="email" required>
 				</div>
 				<label class="error" id="wrongEmail"> </label>
 			</div>
 
 			<div class="input">
-				<label>Password<span id="mandatory">*</span></label>
+				<label>Password<span class="requiredField">*</span></label>
 				<div class="box">
-					<input id="psw" class="form-control" type="password" name="psw" required>
+					<input id="password" class="formControl" type="password" name="password" required>
 				</div>
 				<label class="error" id="wrongPassword"> </label>
 			</div>
 
 			<div class="input">
-				<label>Adress</label>
+				<label>Address</label>
 				<div class="box">
-					<textarea id="add" class="form-control" name="add" placeholder="Parmanent Address"></textarea>
+					<textarea id="address" class="formControl" name="address" placeholder="Parmanent Address"></textarea>
+				</div>
+			</div>
+
+			<div class="input">
+				<label>Country Name</label>
+				<div class="box">
+					<select id="selectCountry" class="formControl" size="1">
+						<option value="" selected="selected">-- Select Country --</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="input">
+				<label>State Name</label>
+				<div class="box">
+					<select id="selectState" class="formControl" size="1">
+						<option value="" selected="selected">-- Select State--</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="input">
+				<label>City Name</label>
+				<div class="box">
+					<select id="selectCity" class="formControl" size="1">
+						<option value="" selected="selected">-- Select City--</option>
+					</select>
 				</div>
 			</div>
 
 			<div class="input">
 				<label>Date of Birth</label>
 				<div class="box">
-					<input id="bday" class="form-control" type="date" name="bday">
+					<input id="dateOfBirth" class="formControl" type="date" name="dateOfBirth">
 				</div>
 			</div>
 
@@ -75,7 +102,7 @@
 			<div class="input">
 				<label>Category</label>
 				<div class="box">
-					<select id="catagory" class="form-control" name="catagory">
+					<select id="casteCatagory" class="formControl" name="casteCatagory">
 						<option id="Gen">Gen</option>
 						<option id="SC">SC</option>
 						<option id="ST">ST</option>
@@ -96,13 +123,13 @@
 
 			<div class="input" id="registerButton">
 				<center>
-					<button type="button" name="reg" class="btn" id="registerBtn">Register</button>
+					<button type="button" name="registerButtonn" class="buttonDesign" id="registerButtonn">Register</button>
 				</center>
 			</div>
 		</div>
 	</div>
 	<!-- division for display the data -->
-	<div class="table" id="dataTable" style="font-size:18px;text-align:center; width=100%;">
+	<div id="dataTable" style="font-size:18px;text-align:center; width=100%;">
 		<div id="display">
 			<table id="registrationTable">
 				<tr>
@@ -110,6 +137,9 @@
 					<th>Email</th>
 					<th>Password</th>
 					<th>Address</th>
+					<th>Country</th>
+					<th>State</th>
+					<th>City</th>
 					<th>DOB</th>
 					<th>Gender</th>
 					<th>Catagory</th>
@@ -122,7 +152,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="registration-script.js"></script>
+	<script src="../JS/registration-script.js"></script>
 </body>
 
 </html>
