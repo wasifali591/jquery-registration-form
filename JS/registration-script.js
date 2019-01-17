@@ -17,18 +17,8 @@ var selectedCountry;
 var selectedState;
 var SelectedCity;
 
-//relationship between sountry state and city
-var countryStateInfo = {
-	"USA": {
-		"California": ["Los Angeles", "San Diego"],
-		"Texas": ["Dallas", "Austin"]
-	},
-	"India": {
-		"West Bengal": ["Kolkata", "burdwan", "medinipur"],
-		"Orissa": ["Bhubaneswar", "Rourkela"]
-	}
-}
-
+//relationship between country state and city
+var countries = getCountries();
 
 //
 $(function () {
@@ -285,34 +275,60 @@ function deleteRow() {
 function selectCountryStateCityInfo() {
 
 	//Get html elements
-	var selectCountry = document.getElementById("selectCountry");
-	var selectState = document.getElementById("selectState");
-	var selectCity = document.getElementById("selectCity");
+	var selectCountry = $("#selectCountry");
+	var selectState = $("#selectState");
+	var selectCity = $("#selectCity");
 
+	var options = "<option value='' selected='selected'>-- Select Country --</option>";
 	//Load countries
-	for (var country in countryStateInfo) {
-		selectCountry.options[selectCountry.options.length] = new Option(country, country);
-	}
+	// <option value="-1" selected="selected">-- Select Country --</option>
+	jQuery.each(countries, function(key, value) {
+		options += "<option value='" + value.countryName + "'>"+ value.countryName +"</option>";
+	});
+	selectCountry.html(options);
+
+
+	$('#selectCountry').on('change',function(){
+		var countryName = $('#selectCountry').val();
+		var stateOptions = "<option value='' selected='selected'>-- Select States --</option>";
+		jQuery.each(countries,function(key,value){
+			if(countryName == value.countryName){
+				console.log(value.states);
+				
+				jQuery.each(value.states, function(key, value) {
+					stateOptions += "<option value='" + value.stateName + "'>"+ value.stateName +"</option>";
+				});
+			}
+		})
+		selectState.html(stateOptions);
+	});
+	// jQuery.each(selectCountry, function(key, value) {
+	// 	console.log(key, value);
+	// });
+
+	// for (var country in countries) {
+	// 	selectCountry.options[selectCountry.options.length] = new Option(country, country);
+	// }
 
 	//County Changed
-	selectCountry.onchange = function () {
+	// selectCountry.onchange = function () {
 
-		selectState.length = 1; // remove all options bar first
-		selectCity.length = 1; // remove all options bar first		 
-		for (var state in countryStateInfo[this.value]) {
-			selectState.options[selectState.options.length] = new Option(state, state);
-		}
-	}
+	// 	selectState.length = 1; // remove all options bar first
+	// 	selectCity.length = 1; // remove all options bar first		 
+	// 	for (var state in countries[this.value]) {
+	// 		selectState.options[selectState.options.length] = new Option(state, state);
+	// 	}
+	// }
 
-	//State Changed
-	selectState.onchange = function () {
+	// //State Changed
+	// selectState.onchange = function () {
 
-		selectCity.length = 1; // remove all options bar first
-		var cities = countryStateInfo[selectCountry.value][this.value];
-		for (var i = 0; i < cities.length; i++) {
-			selectCity.options[selectCity.options.length] = new Option(cities[i], cities[i]);
-		}
-	}
+	// 	selectCity.length = 1; // remove all options bar first
+	// 	var cities = countries[selectCountry.value][this.value];
+	// 	for (var i = 0; i < cities.length; i++) {
+	// 		selectCity.options[selectCity.options.length] = new Option(cities[i], cities[i]);
+	// 	}
+	// }
 }
 
 /*
