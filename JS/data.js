@@ -6,11 +6,17 @@ function getCountries() {
             "states": [
                 {
                     "stateName": "West Bengal",
-                    "cities": ["Mednipur", "Kolkata", "Durgapur"]
+                    "cities": [{"cityName":"Mednipur"},
+                                {"cityName": "Kolkata"},
+                                {"cityName": "Durgapur"}
+                            ]
                 },
                 {
                     "stateName": "Odhisa",
-                    "cities": ["Mednipur", "Kolkata", "Durgapur"]
+                    "cities": [{"cityName":"Mednipur"},
+                                {"cityName": "Kolkata"},
+                                {"cityName": "Durgapur"}
+                            ]
                 }
             ]
         },
@@ -19,11 +25,17 @@ function getCountries() {
             "states": [
                 {
                     "stateName": "California",
-                    "cities": ["Mednipur", "Kolkata", "Durgapur"]
+                    "cities": [{"cityName":"Mednipur"},
+                                {"cityName": "Kolkata"},
+                                {"cityName": "Durgapur"}
+                            ]
                 },
                 {
                     "stateName": "Seattle",
-                    "cities": ["Mednipur", "Kolkata", "Durgapur"]
+                    "cities": [{"cityName":"Mednipur"},
+                                {"cityName": "Kolkata"},
+                                {"cityName": "Durgapur"}
+                            ]
                 }
             ]
         }

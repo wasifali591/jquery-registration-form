@@ -84,3 +84,10 @@ td {
 }
 
 
+.editableTextarea {
+	width: 100%;
+	min-height: 5px;
+	resize: vertical;
+	margin: 0;
+	padding: 2px;
+  }

@@ -16,6 +16,8 @@ var casteCatagoryName;
 var selectedCountry;
 var selectedState;
 var SelectedCity;
+var editableContentsArray=[];
+var editableContentIndex;
 
 //relationship between country state and city
 var countries = getCountries();
@@ -23,7 +25,7 @@ var countries = getCountries();
 //
 $(function () {
 	//check all the required field vallidation
-	selectCountryStateCityInfo();
+	selectCountriesDetails();
 	checkNameValidation();
 	checkEmailValidation();
 	checkPasswordValidation();
@@ -35,7 +37,8 @@ $(function () {
 	writeDataFormToTable();
 	//to delete a row
 	deleteRow();
-	toggleBetweenEditandSaveButton();
+	editDataTable();
+	inlineEdit();
 });
 
 /*
@@ -63,7 +66,7 @@ function showResultOnTable() {
 	selectGender();
 	selectCatagory();
 	selectedCountryStateCityDetails()
-	$("#tableData").append('<tr><td>' + $("#name").val() + '</td><td>' + email + '</td><td>' + $("#password").val() + '</td><td>' + $("#address").val() + '</td><td>' + selectedCountry + '</td><td>' + selectedState + '</td><td>' + SelectedCity + '</td><td>' + $("#dateOfBirth").val() + '</td><td>' + checkedRadioButtons + '</td><td>' + casteCatagoryName + '</td><td>' + checkedCheckbox + '</td><td><input type="button" value="Edit" id="editButton"><input type="button" value="Delete" id="deleteButton"><input type="button" value="Save" id="saveButton" style="display:none"><input type="button" value="Cancel" id="cancelButton" style="display:none"></td></tr>');
+	$("#tableData").append('<tr><td class="editableColumns">' + $("#name").val() + '</td><td class="editableColumns">' + email + '</td><td class="editableColumns" >' + $("#password").val() + '</td><td class="editableColumns" >' + $("#address").val() + '</td><td class="editableColumns" >' + selectedCountry + '</td><td class="editableColumns" >' + selectedState + '</td><td class="editableColumns" >' + SelectedCity + '</td><td class="editableColumns" >' + $("#dateOfBirth").val() + '</td><td class="editableColumns" >' + checkedRadioButtons + '</td><td class="editableColumns" >' + casteCatagoryName + '</td><td class="editableColumns" >' + checkedCheckbox + '</td><td><input type="button" value="Edit" id="editButton"><input type="button" value="Delete" id="deleteButton"><input type="button" value="Save" id="saveButton" style="display:none"><input type="button" value="Cancel" id="cancelButton" style="display:none"></td></tr>');
 	$("#wrongInput").hide();
 	inlineEdit();
 }
@@ -177,6 +180,8 @@ function selectCatagory() {
 	catagory are reset into a general value 
 */
 function resetForm() {
+	$('#stateName').hide();
+	$('#cityName').hide();
 	$('#name').val("");
 	$('#email').val("");
 	$('#password').val("");
@@ -216,13 +221,7 @@ function goUp() {
 */
 function inlineEdit() {
 	$("td").on('dblclick', function (event) {
-		var OriginalContent = $(this).html();
-
-		var inputNewText = prompt("Enter new content for:", OriginalContent);
-
-		if (inputNewText != null) {
-			$(this).html(inputNewText)
-		}
+		$(this).prop('contenteditable', true);
 	});
 }
 
@@ -272,8 +271,12 @@ function deleteRow() {
 	});
 }
 
-function selectCountryStateCityInfo() {
-
+function selectCountriesDetails() {
+	//hide staes and city
+	$('#stateName').hide();
+	$('#cityName').hide();
+	// $('#selectState').hide();
+	// $('#selectCity').hide();
 	//Get html elements
 	var selectCountry = $("#selectCountry");
 	var selectState = $("#selectState");
@@ -281,54 +284,46 @@ function selectCountryStateCityInfo() {
 
 	var options = "<option value='' selected='selected'>-- Select Country --</option>";
 	//Load countries
-	// <option value="-1" selected="selected">-- Select Country --</option>
-	jQuery.each(countries, function(key, value) {
-		options += "<option value='" + value.countryName + "'>"+ value.countryName +"</option>";
+	jQuery.each(countries, function (key, value) {
+		options += "<option value='" + value.countryName + "'>" + value.countryName + "</option>";
 	});
 	selectCountry.html(options);
-
-
-	$('#selectCountry').on('change',function(){
+	//according to country( on change event) state will be populated
+	$('#selectCountry').on('change', function () {
+		$('#stateName').show();
 		var countryName = $('#selectCountry').val();
 		var stateOptions = "<option value='' selected='selected'>-- Select States --</option>";
-		jQuery.each(countries,function(key,value){
-			if(countryName == value.countryName){
+		jQuery.each(countries, function (key, value) {
+			if (countryName == value.countryName) {
 				console.log(value.states);
-				
-				jQuery.each(value.states, function(key, value) {
-					stateOptions += "<option value='" + value.stateName + "'>"+ value.stateName +"</option>";
+				jQuery.each(value.states, function (key, value) {
+					stateOptions += "<option value='" + value.stateName + "'>" + value.stateName + "</option>";
 				});
 			}
-		})
+		});
 		selectState.html(stateOptions);
 	});
-	// jQuery.each(selectCountry, function(key, value) {
-	// 	console.log(key, value);
-	// });
-
-	// for (var country in countries) {
-	// 	selectCountry.options[selectCountry.options.length] = new Option(country, country);
-	// }
-
-	//County Changed
-	// selectCountry.onchange = function () {
-
-	// 	selectState.length = 1; // remove all options bar first
-	// 	selectCity.length = 1; // remove all options bar first		 
-	// 	for (var state in countries[this.value]) {
-	// 		selectState.options[selectState.options.length] = new Option(state, state);
-	// 	}
-	// }
-
-	// //State Changed
-	// selectState.onchange = function () {
-
-	// 	selectCity.length = 1; // remove all options bar first
-	// 	var cities = countries[selectCountry.value][this.value];
-	// 	for (var i = 0; i < cities.length; i++) {
-	// 		selectCity.options[selectCity.options.length] = new Option(cities[i], cities[i]);
-	// 	}
-	// }
+	//according to state( on change event) city will be populated
+	$('#selectState').on('change', function () {
+		$('#cityName').show();
+		var countryName = $('#selectCountry').val();
+		var stateName = $('#selectState').val();
+		var cityOptions = "<option value='' selected='selected'>-- Select City --</option>";
+		jQuery.each(countries, function (key, value) {
+			if (countryName == value.countryName) {
+				//console.log(value.states);
+				jQuery.each(value.states, function (key, value) {
+					if (stateName == value.stateName) {
+						//console.log(value.cities);
+						jQuery.each(value.cities, function (key, value) {
+							cityOptions += "<option value='" + value.cityName + "'>" + value.cityName + "</option>";
+						});
+					}
+				});
+			}
+		});
+		selectCity.html(cityOptions);
+	});
 }
 
 /*
@@ -343,31 +338,43 @@ function selectedCountryStateCityDetails() {
 }
 
 /*
-	function-name:toggleBetweenEditandSaveButton
+	function-name:editDataTable
 	description:toggle bewteen edit,delete(editButton,deleteButton) and save,cancel(saveButton,cancelButton)
 	comments: till now this function is not working properly
 */
-function toggleBetweenEditandSaveButton() {
+function editDataTable() {
 	$("#registrationTable").on('click', 'input[id="editButton"]', function (event) {
+		editableContentIndex=0;
 		$(this).hide();
 		$("#deleteButton").hide();
 		$("#saveButton").show();
 		$("#cancelButton").show();
-		$(this).parents('tr').find('td').each(function () {
-			var currentValue = $(this).html();
-			var newValue = $('<input class="textboxForTableEdit" type="text" />');
-			newValue.val(currentValue);
-			$(this).html(newValue);
+		$(this).parents('tr').find('td.editableColumns').each(function () {
+			$(this).prop('contenteditable', true);
+			editableContentsArray[editableContentIndex]=$(this).html();
+			editableContentIndex++;
+
 		});
 	});
 
 	$("#registrationTable").on('click', 'input[id="saveButton"]', function (event) {
+		$(this).parents('tr').find('td.editableColumns').each(function () {
+			$(this).prop('contenteditable', false);
+		});
 		$(this).hide();
 		$("#deleteButton").show();
 		$("#editButton").show();
 		$("#cancelButton").hide();
 	});
+
 	$("#registrationTable").on('click', 'input[id="cancelButton"]', function (event) {
+		editableContentIndex=0;
+		$(this).parents('tr').find('td.editableColumns').each(function () {
+			$(this).prop('contenteditable', false);
+			$(this).html(editableContentsArray[editableContentIndex]);
+			editableContentIndex++;
+
+		});
 		$(this).hide();
 		$("#deleteButton").show();
 		$("#saveButton").hide();
